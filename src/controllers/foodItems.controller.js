@@ -89,3 +89,29 @@ export const removeFoodItem = async (req, res) => {
 		});
 	}
 };
+
+export const displayFoodItemNames = async (req, res) => {
+	const foodItemName = await FoodItem.find().select('name');
+
+	try {
+		return res.status(200).send(foodItemName);
+	} catch (err) {
+		return res.status(500).send({
+			message: "Unable to display food item's name. Try again later.",
+			error: `${err.message}`,
+		});
+	}
+};
+
+export const displayFoodItemServings = async (req, res) => {
+	const foodItemName = await FoodItem.find().select('serving');
+
+	try {
+		return res.status(200).send(foodItemName);
+	} catch (err) {
+		return res.status(500).send({
+			message: "Unable to display food item's serving. Try again later.",
+			error: `${err.message}`,
+		});
+	}
+};
