@@ -1,4 +1,5 @@
 import express from 'express';
+import { connectToMongoAtlas } from './gateway/connect.js';
 
 // Bring environment variables
 import { PORT, HOST } from './constants/variables.js';
@@ -12,6 +13,9 @@ api.use(express.json());
 api.get('/', (req, res) => {
 	res.send('Welcome to our API!');
 });
+
+// Start a connection to Mongo Atlas
+await connectToMongoAtlas();
 
 // Run express server
 api.listen(PORT, HOST, () => {
