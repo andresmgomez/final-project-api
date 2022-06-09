@@ -18,7 +18,22 @@ export const addNewRecipe = async (req, res) => {
 	} catch (err) {
 		return res.status(500).send({
 			message: 'Unable to create a new recipe',
-			error: `${err.message}`,
+			error: err.message,
+		});
+	}
+};
+
+export const getRecentRecipes = async (req, res) => {
+	const recentRecipes = await Recipe.find().limit(5);
+	try {
+		return res.status(200).send({
+			message: 'List of recent recipes:',
+			recipes: recentRecipes,
+		});
+	} catch (err) {
+		return res.status(500).send({
+			message: 'Unable to find a list of recipes.',
+			error: err.message,
 		});
 	}
 };
@@ -31,7 +46,7 @@ export const getRecipeById = async (req, res) => {
 	} catch (err) {
 		return res.status(500).send({
 			message: 'Unable to find recipe that matches this condition',
-			error: `${err.message}`,
+			error: err.message,
 		});
 	}
 };
@@ -57,7 +72,7 @@ export const updateRecipeField = async (req, res) => {
 	} catch (err) {
 		res.status(500).send({
 			message: "Unable to update the recipe's fields",
-			error: `${err.message}`,
+			error: err.message,
 		});
 	}
 };
