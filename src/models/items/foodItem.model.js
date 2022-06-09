@@ -1,4 +1,4 @@
-import mongoose, { Date } from 'mongoose';
+import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const foodItem = new Schema({
@@ -6,7 +6,8 @@ const foodItem = new Schema({
 	category: String,
 	serving: String,
 	createdOn: {
-		default: Date,
+		type: Date,
+		default: new Date(),
 	},
 });
 
