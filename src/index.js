@@ -1,7 +1,7 @@
 import express from 'express';
 
-// Temporary variables
-const PORT = 8080;
+// Bring environment variables
+import { PORT, HOST } from './constants/variables.js';
 
 // Make an instance of express server
 const api = express();
@@ -14,6 +14,6 @@ api.get('/', (req, res) => {
 });
 
 // Run express server
-api.listen(PORT, () => {
-	console.log(`RESTful API Listening on http://localhost:${PORT}`);
+api.listen(PORT, HOST, () => {
+	console.log(`RESTful API Listening on http://${HOST}:${PORT}`);
 });
