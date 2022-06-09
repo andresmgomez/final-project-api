@@ -8,6 +8,8 @@ import { PORT, HOST } from './constants/variables.js';
 const api = express();
 // Allow to parse JSON inside express
 api.use(express.json());
+// Allow to upload images to a server
+api.use(express.urlencoded({ extended: true }));
 
 // Display test page
 api.get('/', (req, res) => {
