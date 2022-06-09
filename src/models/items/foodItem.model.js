@@ -7,7 +7,7 @@ const foodItem = new Schema({
 	serving: String,
 	createdOn: {
 		type: Date,
-		default: new Date(),
+		default: Date.now,
 	},
 });
 

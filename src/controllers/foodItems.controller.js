@@ -26,3 +26,66 @@ export const addFoodItem = async (req, res) => {
 		});
 	}
 };
+
+export const getFoodItems = async (req, res) => {
+	const allFoodItems = await FoodItem.find();
+	try {
+		if (allFoodItems) {
+			res.status(200).send({
+				message: 'List of food items in the system:',
+				foodItems: allFoodItems,
+			});
+		}
+		return allFoodItems;
+	} catch (err) {
+		return res.status(500).send({
+			message: 'Unable to fetch all the food items.',
+			error: `${err.message}`,
+		});
+	}
+};
+
+export const changeFoodItemFields = async (req, res) => {
+	const foodItem = await FoodItem.findByIdAndUpdate(
+		req.params.foodId,
+		{
+			name: req.body.name,
+			category: req.body.category,
+			serving: req.body.serving,
+		},
+		{ new: true }
+	);
+	try {
+		if (foodItem) {
+			res.status(200).send({
+				message: 'This food item has been updated',
+				foodId: foodItem._id,
+				foodItem: foodItem,
+			});
+		}
+		return foodItem;
+	} catch (err) {
+		return res.status(500).send({
+			message: 'Unable to update this food item',
+			error: `${err.message}`,
+		});
+	}
+};
+
+export const removeFoodItem = async (req, res) => {
+	const foodItem = await FoodItem.findOneAndDelete({
+		name: req.params.name,
+	});
+
+	try {
+		return res.status(200).send({
+			message: 'This food item has been removed',
+			foodItem,
+		});
+	} catch (err) {
+		return res.status(500).send({
+			message: 'Unable to delete this food item.',
+			error: `${err.message}`,
+		});
+	}
+};

@@ -9,6 +9,7 @@ export const connectToMongoAtlas = async () => {
 			{
 				useNewUrlParser: true,
 				useUnifiedTopology: true,
+				useFindAndModify: false,
 			},
 			{
 				dbName: 'project',
