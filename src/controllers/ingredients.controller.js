@@ -25,3 +25,24 @@ export const addEachIngredient = async (req, res) => {
 		});
 	}
 };
+
+export const getFoodItems = async (req, res) => {
+	const foodItems = await Ingredients.findById(
+		req.params.ingredientsId
+	).populate('foodItem');
+
+	try {
+		if (foodItems) {
+			res.status(200).send({
+				message: 'List of ingredients',
+				foodItems,
+			});
+		}
+		return foodItems;
+	} catch (err) {
+		return res.status(500).send({
+			message: 'Unable to get food items inside ingredients',
+			error: `${err.message}`,
+		});
+	}
+};
