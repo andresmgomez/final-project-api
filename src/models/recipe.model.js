@@ -3,12 +3,11 @@ const { Schema, model } = mongoose;
 
 const recipe = new Schema({
 	name: String,
-	description: String,
-	foodItems: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'FoodItem',
-		required: true,
+	picture: {
+		type: String,
+		default: '',
 	},
+	description: String,
 	ingredients: [
 		{
 			type: String,
