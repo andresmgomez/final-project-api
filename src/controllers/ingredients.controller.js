@@ -26,10 +26,10 @@ export const addEachIngredient = async (req, res) => {
 	}
 };
 
-export const getFoodItems = async (req, res) => {
+export const getIngredientFields = async (req, res) => {
 	const foodItems = await Ingredients.findById(
 		req.params.ingredientsId
-	).populate('foodItem');
+	).populate('foodItem', 'name serving -_id');
 
 	try {
 		if (foodItems) {
