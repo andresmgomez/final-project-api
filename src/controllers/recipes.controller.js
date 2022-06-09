@@ -1,39 +1,33 @@
-// import { getCollection } from '../gateway/connect.js';
 import Recipe from '../models/recipe.model.js';
 
 export const addNewRecipe = async (req, res) => {
-	try {
-		const recipe = new Recipe({
-			name: req.body.name,
-			picture: req.body.picture,
-			description: req.body.description,
-			ingredients: req.body.ingredients,
-			instructions: req.body.instructions,
-		});
-		const savedRecipe = await recipe.save();
+	const recipe = new Recipe({
+		name: req.body.name,
+		picture: req.body.picture,
+		description: req.body.description,
+		ingredients: req.body.ingredients,
+		instructions: req.body.instructions,
+	});
 
-		return res.status(201).send(savedRecipe);
+	try {
+		const savedRecipe = await recipe.save();
+		return res.status(201).send({
+			message: 'A new recipe has been added it',
+			recipe: savedRecipe,
+		});
 	} catch (err) {
 		return res.status(500).send({
-			message: 'Unable to access ingredients from the system',
+			message: 'Unable to create a new recipe',
 			error: `${err.message}`,
 		});
 	}
 };
 
-export const getRecipeByName = async (req, res) => {
-	const recipe = await Recipe.findOne({
-		name: req.body.name,
-	});
+export const getRecipeById = async (req, res) => {
+	const recipe = await Recipe.findById(req.params.recipeId);
 
 	try {
-		if (recipe) {
-			res.status(200).send({
-				message: 'This recipe matches your condition',
-				recipe,
-			});
-		}
-		return recipe;
+		return res.status(200).send(recipe);
 	} catch (err) {
 		return res.status(500).send({
 			message: 'Unable to find recipe that matches this condition',
@@ -56,12 +50,10 @@ export const updateRecipeField = async (req, res) => {
 	);
 
 	try {
-		if (recipe) {
-			res.status(200).send({
-				message: "This recipe's fields has been update it",
-				recipe,
-			});
-		}
+		return res.status(200).send({
+			message: 'This recipe field has been update it',
+			recipe: recipe,
+		});
 	} catch (err) {
 		res.status(500).send({
 			message: "Unable to update the recipe's fields",
