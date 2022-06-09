@@ -6,6 +6,7 @@ import { PORT, HOST } from './constants/variables.js';
 // Import other modules from gateway and routes
 import { connectToMongoAtlas } from './gateway/connect.js';
 import { foodItems } from './routes/foodItems.route.js';
+import { ingredientsRoute } from './routes/ingredients.route.js';
 
 // Make an instance of express server
 const api = express();
@@ -22,6 +23,7 @@ api.get('/', (req, res) => {
 // Start a connection to Mongo Atlas
 await connectToMongoAtlas();
 api.use(foodItems);
+api.use(ingredientsRoute);
 
 // Run express server
 api.listen(PORT, HOST, () => {
