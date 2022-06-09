@@ -1,0 +1,23 @@
+{
+  "name": "final-project-api",
+  "version": "0.1.0",
+  "description": "A restful api built using express and mongodb for a recipes web application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git remote add origin https://github.com/andresmgomez/final-project-api.git"
+  },
+  "keywords": [
+    "node",
+    "es6",
+    "express",
+    "mongodb",
+    "rest",
+    "api"
+  ],
+  "author": "Miguel Gomez",
+  "license": "MIT"
+}
