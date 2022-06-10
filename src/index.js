@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 // Bring environment variables
 import { PORT, HOST } from './constants/variables.js';
@@ -8,23 +9,22 @@ import { connectToMongoAtlas } from './gateway/connect.js';
 import { foodItems } from './routes/foodItems.route.js';
 import { ingredientsRoute } from './routes/ingredients.route.js';
 import { recipesRoute } from './routes/recipes.route.js';
+import { rootRoute } from './routes/root.route.js';
 
 // Make an instance of express server
 const api = express();
 // Allow to parse JSON inside express
 api.use(express.json());
+// Allow CORS before connecting frontend
+api.use(cors());
 // Allow to upload images to a server
 api.use(express.urlencoded({ extended: true }));
-
-// Display test page
-api.get('/', (req, res) => {
-	res.send('Welcome to our API!');
-});
 
 // Start a connection to Mongo Atlas
 await connectToMongoAtlas();
 
 // RESTful Api Endpoints
+api.use(rootRoute);
 api.use(foodItems);
 api.use(ingredientsRoute);
 api.use(recipesRoute);
