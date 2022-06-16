@@ -1,0 +1,43 @@
+{
+	"name": "final-project-api",
+	"version": "0.1.0",
+	"description": "A restful api built using express and mongodb for a recipes web application",
+	"author": "Miguel Gomez",
+	"license": "MIT",
+	"main": "index.js",
+	"type": "module",
+	"scripts": {
+		"serve": "firebase emulators:start --only functions",
+		"shell": "firebase functions:shell",
+		"start": "npm run shell",
+		"deploy": "firebase deploy --only functions",
+		"logs": "firebase functions:log"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/andresmgomez/final-project-api.git"
+	},
+	"keywords": [
+		"node",
+		"es6",
+		"express",
+		"mongodb",
+		"rest",
+		"api"
+	],
+	"dependencies": {
+		"firebase-admin": "^10.0.2",
+		"firebase-functions": "^3.18.0",
+		"cors": "^2.8.5",
+		"dotenv": "^16.0.1",
+		"express": "^4.18.1",
+		"mongoose": "5.10.19"
+	},
+	"devDependencies": {
+		"firebase-functions-test": "^0.2.0"
+	},
+	"private": true,
+	"engines": {
+		"node": "16"
+	}
+}

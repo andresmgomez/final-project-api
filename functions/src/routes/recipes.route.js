@@ -7,9 +7,9 @@ import {
 } from '../controllers/recipes.controller.js';
 
 const recipesRoute = express.Router();
-recipesRoute.post('/recipes/recipe', addNewRecipe);
+recipesRoute.post('/recipes', addNewRecipe);
 recipesRoute.get('/recipes', getRecentRecipes);
-recipesRoute.get('/recipes/recipe/:recipeId', getRecipeById);
-recipesRoute.put('/recipes/recipe/:name', updateRecipeField);
+recipesRoute.get('/recipes/:recipeId', getRecipeById);
+recipesRoute.put('/recipes/:name', updateRecipeField);
 
 export { recipesRoute };

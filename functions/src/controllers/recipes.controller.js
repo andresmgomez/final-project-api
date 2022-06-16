@@ -2,6 +2,7 @@ import Recipe from '../models/recipe.model.js';
 
 export const addNewRecipe = async (req, res) => {
 	const recipe = new Recipe({
+		category: req.body.category,
 		name: req.body.name,
 		picture: req.body.picture,
 		description: req.body.description,
@@ -11,10 +12,7 @@ export const addNewRecipe = async (req, res) => {
 
 	try {
 		const savedRecipe = await recipe.save();
-		return res.status(201).send({
-			message: 'A new recipe has been added it',
-			recipe: savedRecipe,
-		});
+		return res.status(201).send(savedRecipe);
 	} catch (err) {
 		return res.status(500).send({
 			message: 'Unable to create a new recipe',
@@ -26,10 +24,7 @@ export const addNewRecipe = async (req, res) => {
 export const getRecentRecipes = async (req, res) => {
 	const recentRecipes = await Recipe.find().limit(5);
 	try {
-		return res.status(200).send({
-			message: 'List of recent recipes:',
-			recipes: recentRecipes,
-		});
+		return res.status(200).send(recentRecipes);
 	} catch (err) {
 		return res.status(500).send({
 			message: 'Unable to find a list of recipes.',

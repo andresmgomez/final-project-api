@@ -8,24 +8,20 @@ const recipe = new Schema({
 	},
 	picture: {
 		type: String,
-		default: '',
+		default: 'https://via.placeholder.com/870x494',
 	},
 	description: {
 		type: String,
 		required: [true, "Recipe's quick description field is required"],
 	},
-	ingredients: [
-		{
-			type: String,
-			required: [true, "Recipe's ingredient fields are required"],
-		},
-	],
-	instructions: [
-		{
-			type: String,
-			required: [true, "Recipe's instruction fields are required"],
-		},
-	],
+	ingredients: {
+		type: Object,
+		required: [true, "Recipe's ingredient fields are required"],
+	},
+	instructions: {
+		type: Object,
+		required: [true, "Recipe's instruction fields are required"],
+	},
 });
 
 const Recipe = model('Recipe', recipe);

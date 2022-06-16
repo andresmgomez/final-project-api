@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 import { MONGO_ATLAS } from '../constants/variables.js';
 
-export const connectToMongoAtlas = async () => {
+export const connectToMongoAtlas = () => {
 	try {
 		console.log('Successfully Connected to Mongo Atlas Database');
-		const db = await mongoose.connect(
+		return mongoose.connect(
 			MONGO_ATLAS,
 			{
 				useNewUrlParser: true,
@@ -15,7 +15,6 @@ export const connectToMongoAtlas = async () => {
 				dbName: 'project',
 			}
 		);
-		return db;
 	} catch (err) {
 		// mongoose.connection.close()
 		console.log({
