@@ -10,7 +10,7 @@ cd final-project-api/functions
 yarn or yarn install
 ```
 
-## Configuration
+## Firebase Configuration
 
 - Install Firebase CLI
 ```cmd: npm i -g firebase-tools```
@@ -23,7 +23,7 @@ yarn or yarn install
 
 Note: You need to create a new project in Firebase and upgrade the plan from <em>Spark</em> to <strong>Blaze</strong> plan in order to use cloud functions.
 
-- Add Firebase Configuration
+## Firebase Functions
 ```
   "hosting": {
       "public": "public",
